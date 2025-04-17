@@ -1,0 +1,57 @@
+@startuml TETRIS ESP32 16X16 WS2818
+allow_mixing
+
+class TetronominoBase {
+    + sprite
+    + color
+    + rotate_pivot
+}
+note bottom of TetronominoBase: Pesado, não\nrecriar instâncias
+
+enum TetrominoType {
+     I
+     O
+     T
+     S
+     Z
+     J
+     L 
+}
+note top of TetrominoType: Podia ter chamado eles pelos nomes inteiros?\nPodia. Mas quem reconhece os nomes:\nTeewee, Orange Ricky, Blue Ricky, Smashboy,\nCleveland Z, Rhode Island Z, e Hero?
+note top of TetrominoType: Literalmente uma lista de endereços\nTetronominoBase para melhor\nlegibilidade
+
+class Tetronomino {
+    + *TetronominoType
+    + position
+    + rotation
+    + rotate()
+}
+note bottom of Tetronomino: rotate() vai aceitar -1, 0 e 1
+
+TetrominoType - Tetronomino : points <
+TetronominoBase - TetrominoType : points <
+
+enum GameState {
+    Startup
+    Running
+    GameOver
+}
+note right of GameState: 1. Startup é a tela inicial\n2. Running é o jogo funcionando\n3. Visual que irá levar ao Startup.
+
+class Display {
+    # const size
+    # const tick_speed
+    # GameState game_state
+    + float time_delta
+    
+    change_game_state(GameState)
+    update(time_delta)
+}
+
+class Hardware {
+    setup()
+}
+
+Hardware --> Display
+
+@enduml

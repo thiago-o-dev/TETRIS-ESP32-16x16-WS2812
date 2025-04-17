@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "author": "Cesar Giacomini Penteado",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 276.74,
+      "left": -63.5,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-neopixel-canvas",
+      "id": "neopixels1",
+      "top": -473.6,
+      "left": 149.9,
+      "attrs": {
+        "rows": "16",
+        "cols": "16",
+        "pixelate": "circle",
+        "matrixBrightness": "255",
+        "matrixLayout": "serpentine"
+      }
+    },
+    {
+      "type": "wokwi-neopixel-canvas",
+      "id": "neopixels2",
+      "top": -70.4,
+      "left": 149.9,
+      "attrs": {
+        "rows": "16",
+        "cols": "16",
+        "pixelate": "circle",
+        "matrixBrightness": "255",
+        "matrixLayout": "serpentine"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 534.2,
+      "left": 76.8,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 591.8,
+      "left": 172.8,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": 591.8,
+      "left": -57.6,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn4",
+      "top": 639.8,
+      "left": 76.8,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn5",
+      "top": 716.6,
+      "left": 0,
+      "attrs": { "color": "red", "xray": "1" }
+    },
+    {
+      "type": "wokwi-tm1637-7segment",
+      "id": "sevseg1",
+      "top": 201.56,
+      "left": -319.37,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-tm1637-7segment",
+      "id": "sevseg2",
+      "top": 105.56,
+      "left": -319.37,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 21.6,
+      "left": -36.6,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "neopixels1:DIN", "esp32:GPIO13", "green", [ "v19.2", "h52.2" ] ],
+    [
+      "neopixels1:VDD",
+      "esp32:5V",
+      "red",
+      [ "v9.6", "h100.6", "v57.6", "h9.6", "v163.2", "h-115.2" ]
+    ],
+    [ "neopixels1:VSS", "esp32:GND", "black", [ "v19.2", "h-58" ] ],
+    [ "esp:5V", "neopixels1:VDD", "red", [ "v-422.25", "h437" ] ],
+    [ "neopixels1:VSS", "esp:GND.2", "black", [ "h-221.2", "v537.6", "h-48" ] ],
+    [ "neopixels1:DOUT", "neopixels2:DIN", "green", [ "v9.6", "h-220.8", "v412.8", "h235.8" ] ],
+    [ "neopixels2:VDD", "esp:5V", "red", [ "v9.6", "h-437" ] ],
+    [ "neopixels2:VSS", "esp:GND.2", "black", [ "v48", "h-221.2", "v86.4", "h-48" ] ],
+    [ "esp:GND.2", "bb1:11b.f", "black", [ "v182.4", "h-48" ] ],
+    [ "esp:GND.2", "btn3:2.l", "black", [ "v76.8", "h-153.6", "v115" ] ],
+    [ "esp:18", "bb1:9b.f", "green", [ "v0" ] ],
+    [ "esp:GND.2", "btn2:2.l", "black", [ "v192", "h105.6" ] ],
+    [ "esp:19", "btn1:1.l", "violet", [ "v115.2", "h67.2" ] ],
+    [ "esp:GND.2", "btn1:2.l", "black", [ "v0" ] ],
+    [ "esp:21", "btn4:1.l", "blue", [ "v220.8", "h57.6" ] ],
+    [ "esp:GND.2", "btn4:2.l", "black", [ "v86.4", "h-28.8", "v153.4" ] ],
+    [ "btn5:1.l", "esp:12", "cyan", [ "h-201.6", "v-412.8", "h153.6" ] ],
+    [ "esp:GND.2", "btn5:2.l", "black", [ "v240", "h-86.4", "v76.6" ] ],
+    [ "neopixels1:DIN", "esp:13", "green", [ "v28.8", "h-408.6" ] ],
+    [ "esp:27", "sevseg1:CLK", "green", [ "v0" ] ],
+    [ "esp:14", "sevseg1:DIO", "green", [ "v0" ] ],
+    [ "sevseg1:VCC", "esp:5V", "red", [ "h0" ] ],
+    [ "sevseg1:GND", "esp:GND.2", "black", [ "h259.2", "v172.8" ] ],
+    [ "esp:25", "sevseg2:CLK", "green", [ "v0" ] ],
+    [ "sevseg2:DIO", "esp:26", "green", [ "h0" ] ],
+    [ "sevseg2:VCC", "esp:5V", "red", [ "h0" ] ],
+    [ "sevseg2:GND", "esp:GND.2", "black", [ "h259.2", "v268.8" ] ],
+    [ "esp:33", "bz1:2", "green", [ "v0" ] ],
+    [ "bz1:1", "esp:GND.2", "black", [ "v19.2", "h124.8", "v307.2" ] ],
+    [ "btn3:1.l", "esp:18", "orange", [ "v-57.6", "h38.4" ] ],
+    [ "esp:5", "btn2:1.l", "gold", [ "v28.8", "h172.8" ] ]
+  ],
+  "dependencies": {}
+}
